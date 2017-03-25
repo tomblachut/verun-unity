@@ -6,6 +6,7 @@ public class SeatComponent : MonoBehaviour {
 
     public int Row = 0;
     public int Column = 0;
+	public bool Reserved = false;
 
     public Seat GetSeat()
     {
