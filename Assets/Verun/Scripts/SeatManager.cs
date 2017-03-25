@@ -3,22 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class SeatManager : MonoBehaviour
 {
     public GameObject dimensionsObject;
     public GameObject startObject;
     public GameObject seatPrefab;
+    public GameObject miniSeatPrefab;
+
+    public GameObject Minimap;
 
     private Dimensions dimensions;
+
+    private List<Seat> selected = new List<Seat>();
+    private List<Seat> inactive = new List<Seat>();
 
 
     void Start()
     {
         dimensions = dimensionsObject.GetComponent<Dimensions>();
 
+        InstantiateSeats();
+//        DrawMinimap();
+
+        inactive.Add(new Seat(1,1));
+
+        ResetColors();
+    }
+
+    private void InstantiateSeats()
+    {
         Vector3 lineStart = startObject.transform.position;
-        Debug.Log(lineStart);
 
         lineStart = new Vector3(lineStart.x, lineStart.y, lineStart.z);
 
@@ -46,5 +61,50 @@ public class SeatManager : MonoBehaviour
             lineStart = dimensions.Top(lineStart);
         }
     }
+
+    private void ResetColors()
+    {
+        foreach (Transform seatObject in transform)
+        {
+
+            var colorize = GetComponentInChildren<ColorizeSeat>();
+            var seat = GetComponent<SeatComponent>();
+
+            if (inactive.Contains(seat.GetSeat()))
+            {
+                colorize.SetInactive();
+            }
+            else
+            {
+                colorize.SetNormal();
+            }
+
+        }
+    }
+
+//    private void DrawMinimap()
+//    {
+//        RectTransform t = Minimap.GetComponent<RectTransform>();
+//
+//        Vector2 current = Vector2.zero;
+//
+//        for (int j = 1; j <= 24; j++)
+//        {
+//            var seatObject = Instantiate(miniSeatPrefab);
+//            var rectTransform = seatObject.GetComponent<RectTransform>();
+////            rectTransform.rect = new Rect(current, rectTransform.rect.size);
+////            rectTransform.rect.position = current;
+//
+//
+//            if (j == 3 || j == 21)
+//            {
+//                current = dimensions.RightStep(current);
+//            }
+//            else
+//            {
+//                current = dimensions.Right(current);
+//            }
+//        }
+//    }
 
 }
