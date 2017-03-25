@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rest : MonoBehaviour
+public class SessionManager : MonoBehaviour
 {
     public GameObject restManagerGameObject;
     private RestManager restManager;
@@ -18,10 +18,6 @@ public class Rest : MonoBehaviour
         Debug.Log("Querying");
         restManager.Get("http://172.20.47.233:8080/api/session", ProcessReceivedSession);
         Debug.Log("Queried");
-	}
-	
-    private void Update () {
-		
 	}
 
 

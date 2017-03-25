@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SeatManager : MonoBehaviour
 {
     public GameObject dimensionsObject;
@@ -27,7 +28,7 @@ public class SeatManager : MonoBehaviour
 
             for (int j = 1; j <= 24; j++)
             {
-                var seatObject = Instantiate(seatPrefab, current, Quaternion.identity);
+                var seatObject = Instantiate(seatPrefab, current, Quaternion.identity, transform);
                 var seatComponent = seatObject.GetComponent<SeatComponent>();
                 seatComponent.Row = i;
                 seatComponent.Column = j;
