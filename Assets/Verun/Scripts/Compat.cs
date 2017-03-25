@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Compat : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         if (SteamVR.instance != null)
         {
             Debug.Log("VR detected");
@@ -13,9 +13,5 @@ public class Compat : MonoBehaviour {
         }
         transform.localPosition = new Vector3(0, 1f, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
