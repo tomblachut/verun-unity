@@ -11,7 +11,7 @@ public class Compat : MonoBehaviour {
             Debug.Log("VR detected");
             enabled = false;
         }
-        transform.position = new Vector3(0, 1.5f, 0);
+        transform.localPosition = new Vector3(0, 1f, 0);
     }
 	
 	// Update is called once per frame
