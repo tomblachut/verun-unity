@@ -316,7 +316,7 @@ namespace SimpleJSON
 					m_EscapeBuilder.Append("\\\\");
 					break;
 				case '\"':
-					m_EscapeBuilder.Append("\\\""");
+					m_EscapeBuilder.Append("\\\"");
 						break;
 						case '\n':
 						m_EscapeBuilder.Append("\\n");
@@ -972,7 +972,7 @@ namespace SimpleJSON
 								{
 									if (result.Length > 2)
 										result += ", ";
-									result += "\""" + Escape(N.Key) + "\":" + N.Value.ToString();
+									result += "\"+ " + Escape(N.Key) + "\":" + N.Value.ToString();
 								}
 								result += "}";
 								return result;
@@ -985,7 +985,7 @@ namespace SimpleJSON
 								{
 									if (result.Length > 3)
 										result += ", ";
-									result += "\n" + aPrefix + aIndent + "\""" + Escape(N.Key) + "\" : ";
+									result += "\n" + aPrefix + aIndent + "\" + " + Escape(N.Key) + "\" : ";
 									result += N.Value.ToString(aIndent, aPrefix + aIndent);
 								}
 								result += "\n" + aPrefix + "}";
@@ -1028,12 +1028,12 @@ namespace SimpleJSON
 
 							public override string ToString()
 							{
-								return "\""" + Escape(m_Data) + "\"";
-							}
+                                return "\"" + Escape(m_Data) + "\"";
+                            }
 
 							internal override string ToString(string aIndent, string aPrefix)
 							{
-								return "\""" + Escape(m_Data) + "\"";
+								return "\"" + Escape(m_Data) + "\"";
 							}
 
 							public override void Serialize(System.IO.BinaryWriter aWriter)
