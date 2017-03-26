@@ -15,8 +15,8 @@ public class SeatManager : MonoBehaviour
 
     private Dimensions dimensions;
 
-    private List<Seat> selected = new List<Seat>();
-    private List<Seat> inactive = new List<Seat>();
+    public List<Seat> selected = new List<Seat>();
+    public List<Seat> inactive = new List<Seat>();
 
 
     void Start()
@@ -28,7 +28,7 @@ public class SeatManager : MonoBehaviour
 
         inactive.Add(new Seat(1,1));
 
-        ResetColors();
+//        ResetColors();
     }
 
     private void InstantiateSeats()
@@ -64,14 +64,20 @@ public class SeatManager : MonoBehaviour
 
     private void ResetColors()
     {
+        foreach (var seat in inactive)
+        {
+            Debug.Log(seat);
+        }
+
         foreach (Transform seatObject in transform)
         {
 
             var colorize = GetComponentInChildren<ColorizeSeat>();
             var seat = GetComponent<SeatComponent>();
 
-            if (inactive.Contains(seat.GetSeat()))
+            if (seat != null && inactive.Contains(seat.GetSeat()))
             {
+                Debug.Log("hit");
                 colorize.SetInactive();
             }
             else
